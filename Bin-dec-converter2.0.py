@@ -2,11 +2,6 @@
 
 def convert(number):
     total = 0
-
-    for x in number:
-        if x != "1" and x != "0":
-            return("Please enter a vaild binary number")
-
     i = 0
     while i < len(number):
         total = total + (int(number[len(number) - i - 1]) * (2 ** i))
@@ -14,9 +9,19 @@ def convert(number):
     return total
 
 
+def check_bin(n):
+    for x in n:
+        if x != "1" and x != "0":
+            return False
+    return True
+
+
 def main():
     try:
         number = input("Please enter the number you want to convert: ")
+        while check_bin(number) != True:
+            number = input("Please enter a vaild binary number: ")
+
     except ValueError:
         print("Enter a vaild number please: ")
     print(f"The decimal equlivalent of {number} is: {convert(number)}")
